@@ -16,6 +16,7 @@ describe ('Thermostat', function() {
       thermostat.up()
       expect(thermostat.getTemperatureTarget()).toEqual(21);
     });
+    
   });
 
   describe ('down', function() {
@@ -29,6 +30,7 @@ describe ('Thermostat', function() {
       expect(function (){
         thermostat.down();
       }).toThrowError("Cannot go below minimum temperature");
+      expect(thermostat.getTemperatureTarget()).toEqual(10);
     });
   });
 
@@ -36,6 +38,18 @@ describe ('Thermostat', function() {
     it ('the minumum temp is 10', function() {
       expect(thermostat.MINIMUMTEMPERATURE).toEqual(10);
     });
+  });
+
+  describe ('power saving mode', function() {
+    it ('when on, cannot go above 25', function() {
+      thermostat.powerSavingMode() = true;
+      thermostat.temperatureTarget = 25;
+      expect(function (){
+        thermostat.up();
+      }).toThrowError("Cannot go above power saving max");
+      expect(thermostat.getTemperatureTarget()).toEqual(25);
+    });
+
   });
 
 });

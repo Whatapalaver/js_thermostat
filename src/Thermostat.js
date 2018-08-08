@@ -12,9 +12,10 @@ Thermostat.prototype.up = function(){
 }
 
 Thermostat.prototype.down = function(){
+  
   if (this.temperatureTarget === this.MINIMUMTEMPERATURE) {
     throw new Error("Cannot go below minimum temperature");
-  } else {
+  }else {
     this.temperatureTarget -= 1;
   }
 }
