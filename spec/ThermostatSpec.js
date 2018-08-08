@@ -23,6 +23,19 @@ describe ('Thermostat', function() {
       thermostat.down()
       expect(thermostat.getTemperatureTarget()).toEqual(19);
     });
+
+    it('cannot go below the minimum temperature', function(){
+      thermostat.temperatureTarget = 10;
+      expect(function (){
+        thermostat.down();
+      }).toThrowError("Cannot go below minimum temperature");
+    });
+  });
+
+  describe ('minumum temperature', function(){
+    it ('the minumum temp is 10', function() {
+      expect(thermostat.MINIMUMTEMPERATURE).toEqual(10);
+    });
   });
 
 });
