@@ -11,5 +11,11 @@ it (' has a start value of 20 degress', function() {
   expect(thermostat.temperatureTarget()).toEqual(20);
 });
 
+  describe ('up', function() {
+    it ( 'increases the temperature target by 1 degree', function() {
+      thermostat.up
+      expect(thermostat.temperatureTarget()).toEqual(21);
+    });
+  });
 
 });
