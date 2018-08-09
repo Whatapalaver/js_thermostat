@@ -16,3 +16,7 @@ Day 2 solo work:
 - [x] Power saving mode is on by default
 - [x] You can reset the temperature to 20 with a reset function
 - [x] You can ask about the thermostat's current energy usage: < 18 is low-usage, < 25 is medium-usage, anything else is high-usage.
+
+*User Interface and JQuery*  
+- [x] Create minimal user interface
+- [x] Install JQuery and link up buttons and text areas  
