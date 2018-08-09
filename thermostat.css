@@ -1,0 +1,18 @@
+body {
+  font-family: 'Verdana', sans-serif;
+  background-color: rgba(0, 119, 255, 0.171);
+  color: white;
+  text-align: center;
+}
+
+.low-usage {
+  color: limegreen;
+}
+
+.medium-usage {
+  color: black;
+}
+
+.high-usage {
+  color: red;
+}

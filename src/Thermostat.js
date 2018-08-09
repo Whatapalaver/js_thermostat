@@ -34,6 +34,7 @@ Thermostat.prototype.switchPowerSavingOff = function() {
 }
 
 Thermostat.prototype.switchPowerSavingOn = function() {
+  this.resetTemperature() // also resets tempTarget
   return this.powerSavingMode = true;
 }
 
