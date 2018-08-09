@@ -5,6 +5,8 @@ function Thermostat() {
   this.powerSavingMode = true;
   this.maxLimitPSM_on = 25;
   this.maxLimitPSM_off = 32;
+  this.lowUsageLimit = 18;
+  this.mediumUsageLimit = this.maxLimitPSM_on;
 }
 
 Thermostat.prototype.getTemperatureTarget = function(){
@@ -54,4 +56,19 @@ Thermostat.prototype.down = function(){
 
 Thermostat.prototype.resetTemperature = function(){
   this.temperatureTarget = this.DEFAULT_TEMPERATURE
+}
+
+/*
+< 18 is low-usage
+< 25 is medium-usage
+anything else is high-usage
+*/
+Thermostat.prototype.energyUsage = function(){
+  if (this.temperatureTarget < this.lowUsageLimit) {
+    return 'low-usage'
+  } else if (this.temperatureTarget < this.mediumUsageLimit) {
+    return 'medium-usage'
+  } else {
+    return 'high-usage'
+  }
 }
