@@ -46,26 +46,41 @@ describe ('Thermostat', function() {
       expect(thermostat.isPowerSavingMode()).toBe(true);
     });
 
-    it('can switch power saving mode off', function() {
-      thermostat.switchPowerSavingOff();
-      expect(thermostat.isPowerSavingMode()).toBe(false);
+    describe ('when on', function() {
+
+      it('can switch power saving mode off', function() {
+        thermostat.switchPowerSavingOff();
+        expect(thermostat.isPowerSavingMode()).toBe(false);
+      });
+
+      it ('cannot go above 25', function() {
+        thermostat.powerSavingMode = true;
+        thermostat.temperatureTarget = 25;
+        expect(function (){
+          thermostat.up();
+        }).toThrowError("Cannot go above maximum temperature");
+        expect(thermostat.getTemperatureTarget()).toEqual(25);
+      });
     });
 
-    it('can switch power saving mode on', function() {
-      thermostat.switchPowerSavingOff();
-      thermostat.switchPowerSavingOn();
-      expect(thermostat.isPowerSavingMode()).toBe(true);
-    });
+    describe ('when off', function() {
 
-    it ('when on, cannot go above 25', function() {
-      thermostat.powerSavingMode = true;
-      thermostat.temperatureTarget = 25;
-      expect(function (){
-        thermostat.up();
-      }).toThrowError("Cannot go above power saving max");
-      expect(thermostat.getTemperatureTarget()).toEqual(25);
-    });
+      it('can switch power saving mode on', function() {
+        thermostat.switchPowerSavingOff();
+        thermostat.switchPowerSavingOn();
+        expect(thermostat.isPowerSavingMode()).toBe(true);
+      });
 
+      it ('cannot go above 32', function() {
+        thermostat.switchPowerSavingOff();
+        thermostat.temperatureTarget = 32;
+        expect(function (){
+          thermostat.up();
+        }).toThrowError("Cannot go above maximum temperature");
+        expect(thermostat.getTemperatureTarget()).toEqual(32);
+      });
+
+    });
   });
 
 });
