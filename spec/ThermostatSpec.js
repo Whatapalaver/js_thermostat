@@ -41,8 +41,24 @@ describe ('Thermostat', function() {
   });
 
   describe ('power saving mode', function() {
+
+    it('has power saving mode on by default', function() {
+      expect(thermostat.isPowerSavingMode()).toBe(true);
+    });
+
+    it('can switch power saving mode off', function() {
+      thermostat.switchPowerSavingOff();
+      expect(thermostat.isPowerSavingMode()).toBe(false);
+    });
+
+    it('can switch power saving mode on', function() {
+      thermostat.switchPowerSavingOff();
+      thermostat.switchPowerSavingOn();
+      expect(thermostat.isPowerSavingMode()).toBe(true);
+    });
+
     it ('when on, cannot go above 25', function() {
-      thermostat.powerSavingMode() = true;
+      thermostat.powerSavingMode = true;
       thermostat.temperatureTarget = 25;
       expect(function (){
         thermostat.up();
